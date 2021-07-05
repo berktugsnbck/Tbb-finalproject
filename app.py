@@ -25,7 +25,7 @@ def buyuk_sehirler() -> List[Dict]:
 
     return results
 
-healtcheck = {
+hc = {
     "health": [
     {
       "status": "{ok}",
@@ -34,13 +34,13 @@ healtcheck = {
 }
 
 
-@app.route('/data')
+@app.route('/d')
 def index() -> str:
     return json.dumps({'buyuk_sehirler': buyuk_sehirler()})
 
-@app.route('/healtcheck')
+@app.route('/hc')
 def run1():
-    return jsonify(healtcheck)
+    return jsonify(hc)
 
 
 if __name__ == '__main__':

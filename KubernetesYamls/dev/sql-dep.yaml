@@ -18,22 +18,20 @@ spec:
       containers:
       - name: mysql
         image: mysql
-        imagePullPolicy: Never
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: python-sec
               key: MYSQL_ROOT_PASSWORD
-        - name: db_name
+        - name: MYSQL_INSTANCE_NAME
           value: sehirler
         ports:
         - containerPort: 3306
-          name: db-container
         volumeMounts:
-          - name: mysql-persistent-storage
-            mountPath: /home/mysql
+        - name: mysql-pervol
+          mountPath: /home/mysql
       volumes:
-        - name: mysql-persistent-storage
-          persistentVolumeClaim:
-            claimName: mysql-pervolclm
+      - name: mysql-pervol
+        persistentVolumeClaim:
+          claimName: mysql-pervolclm

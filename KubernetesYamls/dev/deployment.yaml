@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   labels:
     app: python
-  name: python
+  name: deploying-python
   namespace: dev
 spec:
   replicas: 1
@@ -25,12 +25,16 @@ spec:
       - name: tbb-final
         image: berktugsnbck/tbb-final:tbbpython
         ports:
-        - containerPort: 5001
+          - containerPort: 5001
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: python-sec
               key: MYSQL_ROOT_PASSWORD
-        - name: db_name
-          value: sehirler
+        - name: MYSQL_INSTANCE_NAME
+          value: "sehirler"
+        - name: MYSQL_PORT_3306_TCP_ADDR
+          value: "mydb"
+        - name: MYSQL_PORT_3306_TCP_PORT
+          value: "3306"

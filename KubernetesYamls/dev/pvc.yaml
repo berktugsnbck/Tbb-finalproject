@@ -6,13 +6,13 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: manual-dev
   capacity:
-    storage: 0.2Gi
+    storage: 0.3Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /mnt/data
+    path: "/mnt/data/dev"
 
 ---
 apiVersion: v1
@@ -21,9 +21,9 @@ metadata:
   name: mysql-pervolclm
   namespace: dev
 spec:
-  storageClassName: manual
+  storageClassName: manual-dev
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 0.2Gi
+      storage: 0.1Gi
