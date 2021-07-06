@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: python
+  name: deploying-python
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+      - name: tbb-final
+        image: berktugsnbck/tbb-final:tbbpython
+        ports:
+          - containerPort: 5001
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: python-sec
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_INSTANCE_NAME
+          value: "sehirler"
+        - name: MYSQL_PORT_3306_TCP_ADDR
+          value: "mydb"
+        - name: MYSQL_PORT_3306_TCP_PORT
+          value: "3306"
