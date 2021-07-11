@@ -1,0 +1,41 @@
+---
+
+- name: RSYSLOG
+  hosts: rsys
+  become: yes
+  remote_user: berktug
+  roles:
+    - role: rsyslog
+  tags: rsyslog
+
+- name: NETSTAT
+  hosts: netstat
+  become: yes
+  remote_user: berktug
+  roles:
+    - role: netstat
+  tags: netstat
+
+- name: DockerVersion
+  hosts: dockerversion
+  become: yes
+  remote_user: berktug
+  roles:
+    - role: docker
+  tags: docker
+
+- name: KubectlVersion
+  hosts: kubectlversion
+  become: yes
+  remote_user: berktug
+  roles:
+    - role: kubectl
+  tags: kubectl
+
+- name: TcpDump
+  hosts: tcpdump
+  become: yes
+  remote_user: berktug
+  roles:
+    - role: tcpdump
+  tags: tcpdump

@@ -1,0 +1,8 @@
+---
+
+- name: docker-version
+  shell: "docker -v | cut -d ' ' -f 3 | cut -d ',' -f 1"
+  register: version
+
+- debug:
+    msg: "{{ version }}"

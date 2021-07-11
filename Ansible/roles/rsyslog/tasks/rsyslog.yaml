@@ -1,0 +1,8 @@
+---
+
+- name: rsyslog-debianfamily
+  apt:
+    name: rsyslog
+    state: latest
+  notify: 
+    - restarting-rsyslog  

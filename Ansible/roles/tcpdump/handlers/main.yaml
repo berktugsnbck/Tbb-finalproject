@@ -1,0 +1,6 @@
+---
+
+- name: restarting-tcpdump
+  service: 
+    name: tcpdump
+    state: restarted
